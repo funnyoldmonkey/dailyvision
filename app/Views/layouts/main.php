@@ -76,9 +76,14 @@
             font-family: var(--f-sans);
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling on main app */
+        }
+
+        /* Lock screen for the main app experience */
+        body.body-lock {
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
+            position: fixed;
         }
 
         .safe-area-inset-bottom {
@@ -126,6 +131,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Only initialize the App brain if we are on the main camera page
             if (typeof App !== 'undefined' && document.getElementById('view-camera')) {
+                document.body.classList.add('body-lock');
                 App.init();
             }
         });
