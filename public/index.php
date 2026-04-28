@@ -13,6 +13,7 @@ $router = new Router();
 
 // Routes
 $router->add('GET', '/', 'HomeController@index');
+$router->add('GET', '/install', 'SetupController@index');
 $router->add('POST', '/api/analyze', 'AiController@analyze');
 
 // Dispatch
