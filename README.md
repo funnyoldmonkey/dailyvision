@@ -11,17 +11,19 @@
 - **📸 Camera-First Interface**: A minimal, full-screen mobile experience optimized for instant capture.
 - **🧠 AI Analysis (Gemini)**: Dominant visual themes and moods are analyzed to return relevant scripture and reflections.
 - **🎨 Dynamic Canvas Art**: Every reflection is unique, with AI-suggested "Vibe Colors," typography, and custom text overlays generated on-the-fly.
-- **🔄 Reimagine Function**: Not satisfied? One click triggers a high-temperature AI "Reimagine" for a completely different spiritual perspective.
-- **📱 PWA Excellence**: Fully installable on iOS and Android with offline caching and a native app feel.
-- **📲 Premium Sharing**: Share your generated "Blessing Image" directly to Facebook, Messenger, and more with formatted captions.
+- **🔄 Reimagine Function**: One click triggers a high-temperature AI "Reimagine" for a completely different spiritual perspective.
+- **🌍 Community Gallery**: Share your visions to a public community feed where others can find inspiration.
+- **🔗 Persistent Sharing**: Generates unique, shareable URLs for every vision with dynamic SEO previews for social media.
+- **💼 Boss Panel**: A secure, professional admin dashboard to manage AI settings and moderate the community gallery.
+- **📱 PWA Excellence**: Fully installable on iOS and Android with offline caching, auto-updating, and a native app feel.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React-like state management with Vanilla JS, Tailwind CSS, and HTML5 Canvas.
+- **Frontend**: Vanilla JS (State-based), Tailwind CSS, HTML5 Canvas.
 - **Backend**: Vanilla PHP 8.2+ (Custom MVC Architecture).
-- **Database**: SQLite 3 (Secure storage for API configuration).
+- **Database**: SQLite 3 (Settings & Vision persistence).
 - **AI Engine**: Google Gemini API.
-- **PWA**: Manifest.json & Service Workers.
+- **PWA**: Manifest.json & Service Workers with auto-cache busting.
 
 ## 🚀 Getting Started
 
@@ -43,14 +45,13 @@
    composer dump-autoload
    ```
 
-3. **Initialize the Database**:
-   Run the setup script to create the SQLite database and seed the API settings:
-   ```bash
-   php app/Core/Setup.php
-   ```
+3. **Database Configuration**:
+   The database comes pre-configured. To manage your API keys and settings, log in to the **Boss Panel**.
 
-4. **Configure your API Key**:
-   The `app/Core/Setup.php` script contains a placeholder Gemini API key. For production, update your key in the `settings` table of `database/dailyvision.sqlite`.
+4. **Boss Panel (Admin)**:
+   Access the admin dashboard at `/boss` to update your Gemini API Key and AI Model.
+   - **Secret Question**: *"What's your nickname when you were a kid?"*
+   - **Default Answer**: `badang` (Change this in the database for production).
 
 5. **Run Locally**:
    Point your local web server (like XAMPP) to the project root. The `.htaccess` files will automatically route requests to the `public/` directory.
@@ -59,12 +60,13 @@
 
 ```text
 /app
-  /Controllers  - Request handlers
+  /Controllers  - Request handlers (Ai, Vision, Admin)
   /Core         - Router, Database, Session, Helpers
   /Models       - Data models
-  /Views        - HTML templates
+  /Views        - HTML templates (Admin, Gallery, Vision View)
 /public
   /assets       - CSS, JS, and Icons
+  /visions      - Physical storage for shared images
   /index.php    - App entry point
 /database       - SQLite file location
 ```
