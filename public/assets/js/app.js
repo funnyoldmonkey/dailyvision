@@ -147,7 +147,7 @@ const App = {
             ctx.save();
             ctx.globalCompositeOperation = 'overlay';
             ctx.fillStyle = aiResult.vibeColor;
-            ctx.globalAlpha = 0.3;
+            ctx.globalAlpha = 0.5; // Increased from 0.3 for better visibility
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.restore();
         }
