@@ -305,6 +305,10 @@ const App = {
             return;
         }
 
+        // Prevent double-taps
+        if (this.state.isSharing) return;
+        this.state.isSharing = true;
+
         const btnShare = this.elements.btnShare;
         const originalHtml = btnShare.innerHTML;
         btnShare.disabled = true;
@@ -314,7 +318,13 @@ const App = {
             const { aiResult } = this.state;
             const dataUrl = this.elements.canvas.toDataURL('image/jpeg', 0.9);
             
-            // 1. Save to server first
+            // 1. Prepare file synchronously to keep user gesture alive
+            const arr = dataUrl.split(','), mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--) u8arr[n] = bstr.charCodeAt(n);
+            const file = new File([u8arr], 'daily-vision.jpg', { type: mime });
+
+            // 2. Save to server
             const saveResponse = await fetch(`${APP_URL}/api/visions`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -325,17 +335,13 @@ const App = {
             });
 
             const saved = await saveResponse.json();
-            if (saved.error) throw new Error(saved.error);
+            const shareUrl = saved.url || APP_URL;
 
-            // 2. Prepare file for sharing
-            const res = await fetch(dataUrl);
-            const blob = await res.blob();
-            const file = new File([blob], 'daily-vision.jpg', { type: 'image/jpeg' });
-
+            // 3. Share
             const shareData = {
                 title: 'Daily Vision | A Spiritual Reflection',
                 text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\nShared via Daily Vision App`,
-                url: saved.url
+                url: shareUrl
             };
 
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -345,8 +351,12 @@ const App = {
             await navigator.share(shareData);
         } catch (err) {
             console.error("Share error:", err);
-            alert("Could not share the vision. Please try again.");
+            // If it's a 'cancel' by the user, don't alert
+            if (err.name !== 'AbortError') {
+                alert("Could not share. Please try again.");
+            }
         } finally {
+            this.state.isSharing = false;
             btnShare.disabled = false;
             btnShare.innerHTML = originalHtml;
         }
