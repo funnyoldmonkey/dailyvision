@@ -356,15 +356,23 @@ const App = {
             // 3. Share
             const shareData = {
                 title: 'Daily Vision | A Spiritual Reflection',
-                text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\nShared via Daily Vision App`,
+                text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\nRead more:`,
                 url: shareUrl
             };
 
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                shareData.files = [file];
+            // CRITICAL: On most mobile browsers, sharing a 'file' overrides the URL/Text.
+            // Since we have a unique link with a preview image (SEO), sharing the link is MUCH better.
+            if (saved.url) {
+                // If the server saved it successfully, share the link for best social previews
+                await navigator.share(shareData);
+            } else if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                // Fallback to file only if link saving failed
+                await navigator.share({
+                    files: [file],
+                    title: shareData.title,
+                    text: shareData.text
+                });
             }
-
-            await navigator.share(shareData);
         } catch (err) {
             console.error("Share error:", err);
             // If it's a 'cancel' by the user, don't alert

@@ -29,7 +29,12 @@ class VisionController
         $fullPath = __DIR__ . '/../../public/' . $filePath;
 
         if (!file_put_contents($fullPath, $binaryData)) {
-            json(['error' => 'Failed to save vision image']);
+            $error = error_get_last();
+            json([
+                'error' => 'Failed to save vision image. Check folder permissions.',
+                'debug' => $error ? $error['message'] : 'No error message',
+                'path' => $fullPath
+            ]);
         }
 
         $db = Database::getInstance();

@@ -125,8 +125,8 @@
     <script>
         const APP_URL = "<?php echo base_url(); ?>";
     </script>
-    <script src="<?php echo base_url('assets/js/pwa.js?v=1.3'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/app.js?v=1.3'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/pwa.js?v=1.4'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/app.js?v=1.4'); ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Only initialize the App brain if we are on the main camera page
