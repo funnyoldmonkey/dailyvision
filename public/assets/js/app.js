@@ -175,27 +175,39 @@ const App = {
         // 5. Draw text
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
-        ctx.shadowColor = 'rgba(0,0,0,0.5)';
-        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(0,0,0,0.8)';
+        ctx.shadowBlur = 15;
 
-        const padding = 60;
+        const padding = 80;
         const centerX = canvas.width / 2;
+        
+        // Calculate total block height first to center it better
+        const summaryLines = this.getWrapTextLines(ctx, aiResult.devotionalSummary, canvas.width - padding * 2);
+        const verseLines = this.getWrapTextLines(ctx, `"${aiResult.verseText}"`, canvas.width - padding * 2);
+        
+        const summaryLineHeight = 45;
+        const verseLineHeight = 85;
+        const gap = 40;
+        
+        const totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 60;
+
         let startY = aiResult.textPosition === 'top' ? padding + 100 : 
-                     aiResult.textPosition === 'bottom' ? canvas.height - padding - 200 :
-                     canvas.height / 2 - 100;
+                     aiResult.textPosition === 'bottom' ? canvas.height - totalHeight - padding :
+                     (canvas.height - totalHeight) / 2;
 
         // Devotional Summary (Italic, smaller)
-        ctx.font = `italic 30px "${aiResult.uniqueFont || 'Georgia'}"`;
-        this.wrapText(ctx, aiResult.devotionalSummary, centerX, startY, canvas.width - padding * 2, 40);
+        ctx.font = `italic 36px "${aiResult.uniqueFont || 'Georgia'}"`;
+        this.wrapText(ctx, aiResult.devotionalSummary, centerX, startY, canvas.width - padding * 2, summaryLineHeight);
+        
+        // Move Y down based on summary lines
+        startY += (summaryLines.length * summaryLineHeight) + gap;
         
         // Verse Text (Bold, larger)
-        startY += 80;
-        ctx.font = `bold 60px "${aiResult.uniqueFont || 'Georgia'}"`;
-        this.wrapText(ctx, `"${aiResult.verseText}"`, centerX, startY, canvas.width - padding * 2, 70);
+        ctx.font = `bold 72px "${aiResult.uniqueFont || 'Georgia'}"`;
+        this.wrapText(ctx, `"${aiResult.verseText}"`, centerX, startY, canvas.width - padding * 2, verseLineHeight);
 
         // Reference
-        const verseLines = this.getWrapTextLines(ctx, `"${aiResult.verseText}"`, canvas.width - padding * 2).length;
-        startY += (verseLines * 70) + 20;
+        startY += (verseLines.length * verseLineHeight) + 30;
         ctx.font = `40px "${aiResult.uniqueFont || 'Georgia'}"`;
         ctx.fillText(`— ${aiResult.verseReference}`, centerX, startY);
     },
