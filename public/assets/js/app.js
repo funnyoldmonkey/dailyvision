@@ -215,9 +215,8 @@ const App = {
         gap = 20; 
         totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 40;
 
-        let startY = aiResult.textPosition === 'top' ? padding + 40 : 
-                     aiResult.textPosition === 'bottom' ? canvas.height - totalHeight - padding :
-                     (canvas.height - totalHeight) / 2;
+        // Forced Bottom Alignment
+        let startY = canvas.height - totalHeight - padding;
 
         // Draw Summary
         ctx.font = `italic ${summaryFontSize}px "${aiResult.uniqueFont || 'Georgia'}"`;
