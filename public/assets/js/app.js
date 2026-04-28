@@ -211,7 +211,13 @@ const App = {
             gap -= 2;
         }
 
-        let startY = aiResult.textPosition === 'top' ? padding + 60 : 
+        const summaryLineHeight = 45;
+        const verseLineHeight = 85;
+        const gap = 20; // Reduced gap
+        
+        const totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 40;
+
+        let startY = aiResult.textPosition === 'top' ? padding + 40 : 
                      aiResult.textPosition === 'bottom' ? canvas.height - totalHeight - padding :
                      (canvas.height - totalHeight) / 2;
 
@@ -226,7 +232,7 @@ const App = {
         this.wrapText(ctx, `"${aiResult.verseText}"`, centerX, startY, canvas.width - padding * 2, verseLineHeight);
 
         // Draw Reference
-        startY += (verseLines.length * verseLineHeight) + 30;
+        startY += (verseLines.length * verseLineHeight) + 20;
         ctx.font = `${summaryFontSize + 4}px "${aiResult.uniqueFont || 'Georgia'}"`;
         ctx.fillText(`— ${aiResult.verseReference}`, centerX, startY);
     },
