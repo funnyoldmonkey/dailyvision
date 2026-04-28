@@ -40,11 +40,16 @@ class AiController
         
         STRICT RULING: Skip all internal thinking, reasoning, or monologue. Go straight to the answer.
         
+        TONE & PERSONALITY RULES:
+        1. BE HUMAN & CONVERSATIONAL: Speak like a modern, encouraging friend. Avoid sounding like a sermon or an old poet.
+        2. NO "FANCY" WORDS: Strictly avoid words like 'transcendent', 'profound', 'behold', 'multitude', 'manifest', or 'hitherto'. Use simple, direct language.
+        3. BE RELATABLE: Relate the image to the verse in a way that feels grounded in real daily life (e.g., 'A messy desk can still be a place of peace' rather than 'The chaos of the workspace reflects the turmoil of the soul').
+        4. SUMMARY RULE: DO NOT start the devotionalSummary with 'Finding' or 'Embracing'. Be direct and poetic but modern.
+        
         CREATIVE VARIETY RULES:
-        1. Pick one vibeColor from this pool: [#E5D3B3, #D4E2D4, #D1C4E9, #FFECB3, #B3E5FC, #F8BBD0, #C8E6C9, #B0BEC5, #FFE0B2, #CFD8DC, #FFF9C4, #DCEDC8, #F5F5F5, #E1F5FE, #FFF3E0, #F3E5F5, #E8F5E9, #EFEBE9, #FAFAFA, #ECEFF1]
-        2. Pick one uniqueFont from this pool: [Playfair Display, Montserrat, Cormorant Garamond, Outfit, Cinzel, Lobster, Dancing Script, Quicksand, Raleway, Great Vibes, Bodoni Moda, Syne, Libre Baskerville, EB Garamond, Abril Fatface, Satisfy, Oswald, Spectral, Inter, Caveat]
+        1. vibeColor pool: [#E5D3B3, #D4E2D4, #D1C4E9, #FFECB3, #B3E5FC, #F8BBD0, #C8E6C9, #B0BEC5, #FFE0B2, #CFD8DC, #FFF9C4, #DCEDC8, #F5F5F5, #E1F5FE, #FFF3E0, #F3E5F5, #E8F5E9, #EFEBE9, #FAFAFA, #ECEFF1]
+        2. uniqueFont pool: [Playfair Display, Montserrat, Cormorant Garamond, Outfit, Cinzel, Lobster, Dancing Script, Quicksand, Raleway, Great Vibes, Bodoni Moda, Syne, Libre Baskerville, EB Garamond, Abril Fatface, Satisfy, Oswald, Spectral, Inter, Caveat]
         3. textPosition: ALWAYS return 'bottom'.
-        4. SUMMARY RULE: DO NOT start the devotionalSummary with 'Finding' or 'Embracing'. Be more diverse and poetic (e.g., 'Light breaks through...', 'The heart knows...', etc.).
         
         STRICT REQUIREMENT: Output ONLY a valid JSON object. Do not include preamble, markdown formatting, or postscript.
         
