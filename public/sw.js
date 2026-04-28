@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-vision-v1';
+const CACHE_NAME = 'daily-vision-v2';
 const ASSETS = [
     './',
     './assets/js/app.js',
@@ -6,6 +6,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(ASSETS);
