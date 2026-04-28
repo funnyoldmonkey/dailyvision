@@ -7,15 +7,20 @@ use App\Core\Session;
 if (!function_exists('base_url')) {
     function base_url(string $path = ''): string
     {
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+        $host = $_SERVER['HTTP_HOST'];
+        
         $scriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
         $projectRoot = str_replace('/public/index.php', '', $scriptPath);
         $projectRoot = rtrim($projectRoot, '/');
         
+        $fullBase = $protocol . "://" . $host . $projectRoot;
+
         if (empty($path)) {
-            return $projectRoot;
+            return $fullBase;
         }
         
-        return $projectRoot . '/' . ltrim($path, '/');
+        return $fullBase . '/' . ltrim($path, '/');
     }
 }
 
