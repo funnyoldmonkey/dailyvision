@@ -58,7 +58,7 @@ class AiController
           \"verseText\": \"[Short, powerful Bible Verse]\",
           \"verseReference\": \"[Book, Chapter, Verse]\",
           \"devotionalSummary\": \"[A concise, 10-word summary for image overlay]\",
-          \"fullDevotion\": \"[A full 3-4 sentence devotion]\",
+          \"fullDevotion\": \"[A meaningful 5-7 sentence devotion that provides a deep, human reflection on the image and verse]\",
           \"vibeColor\": \"[From Pool]\",
           \"uniqueFont\": \"[From Pool]\",
           \"textPosition\": \"bottom\"
