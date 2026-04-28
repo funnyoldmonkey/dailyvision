@@ -26,7 +26,7 @@
     </div>
 
     <!-- Bottom Half: Deeper Dive -->
-    <div class="flex-1 flex flex-col p-8 pb-32">
+    <div class="flex-1 flex flex-col p-8 pb-56">
         <span class="text-[11px] uppercase tracking-[0.15em] text-sage font-bold mb-4">Daily Reflection</span>
         <h2 id="reflection-verse" class="font-serif text-[36px] leading-[1.3] text-ink mb-2"></h2>
         <p id="reflection-reference" class="font-serif italic text-[18px] text-sage mb-8"></p>

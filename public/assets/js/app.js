@@ -151,8 +151,8 @@ const App = {
             gradient.addColorStop(0, 'rgba(0,0,0,0.7)');
             gradient.addColorStop(0.4, 'rgba(0,0,0,0)');
         } else if (aiResult.textPosition === 'bottom') {
-            gradient.addColorStop(0.6, 'rgba(0,0,0,0)');
-            gradient.addColorStop(1, 'rgba(0,0,0,0.7)');
+            gradient.addColorStop(0.5, 'rgba(0,0,0,0)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0.85)');
         } else {
             gradient.addColorStop(0.2, 'rgba(0,0,0,0)');
             gradient.addColorStop(0.5, 'rgba(0,0,0,0.7)');
@@ -215,8 +215,8 @@ const App = {
         gap = 20; 
         totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 40;
 
-        // Forced Bottom Alignment
-        let startY = canvas.height - totalHeight - padding;
+        // Forced Bottom Alignment (Low as possible)
+        let startY = canvas.height - totalHeight - 30;
 
         // Draw Summary
         ctx.font = `italic ${summaryFontSize}px "${aiResult.uniqueFont || 'Georgia'}"`;
