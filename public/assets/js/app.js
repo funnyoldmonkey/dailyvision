@@ -320,7 +320,8 @@ const App = {
             
             // 1. Prepare file synchronously to keep user gesture alive
             const arr = dataUrl.split(','), mime = arr[0].match(/:(.*?);/)[1];
-            const bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            const bstr = atob(arr[1]), u8arr = new Uint8Array(bstr.length);
+            let n = bstr.length;
             while(n--) u8arr[n] = bstr.charCodeAt(n);
             const file = new File([u8arr], 'daily-vision.jpg', { type: mime });
 
