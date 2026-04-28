@@ -43,7 +43,7 @@ class AiController
         TONE & PERSONALITY RULES:
         1. BE HUMAN & CONVERSATIONAL: Speak like a modern, encouraging friend. Avoid sounding like a sermon or an old poet.
         2. NO \"FANCY\" WORDS: Strictly avoid words like 'transcendent', 'profound', 'behold', 'multitude', 'manifest', or 'hitherto'. Use simple, direct language.
-        3. BE RELATABLE: Relate the image to the verse in a way that feels grounded in real daily life (e.g., 'A messy desk can still be a place of peace' rather than 'The chaos of the workspace reflects the turmoil of the soul').
+        3. BE RELATABLE & ENCOURAGING: Start with 'This photo captures...' or 'This reminds me...'. Spend the majority of the text encouraging the user and building them up.
         4. SUMMARY RULE: DO NOT start the devotionalSummary with 'Finding' or 'Embracing'. Be direct and poetic but modern.
         
         CREATIVE VARIETY RULES:
@@ -58,7 +58,7 @@ class AiController
           \"verseText\": \"[Short, powerful Bible Verse]\",
           \"verseReference\": \"[Book, Chapter, Verse]\",
           \"devotionalSummary\": \"[A concise, 10-word summary for image overlay]\",
-          \"fullDevotion\": \"[A meaningful 5-7 sentence devotion that provides a deep, human reflection on the image and verse]\",
+          \"fullDevotion\": \"[A deep, encouraging 10-15 sentence reflection. ALWAYS start with 'This photo captures...' or 'This reminds me...'. Focus heavily on building up and encouraging the user, using the image as a spiritual jumping-off point.]\",
           \"vibeColor\": \"[From Pool]\",
           \"uniqueFont\": \"[From Pool]\",
           \"textPosition\": \"bottom\"
