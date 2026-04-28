@@ -22,9 +22,6 @@
     <meta property="og:title" content="<?php echo $og_title ?? 'Daily Vision | Spiritual Lens'; ?>">
     <meta property="og:description" content="<?php echo $og_description ?? 'Take a photo, receive a reflection. A spiritual lens for your daily journey.'; ?>">
     <meta property="og:image" content="<?php echo $og_image ?? base_url('assets/icons/icon-512.png'); ?>">
-    <meta property="og:image:width" content="<?php echo $og_image_width ?? '1080'; ?>">
-    <meta property="og:image:height" content="<?php echo $og_image_height ?? '1350'; ?>">
-    <meta property="og:image:type" content="image/jpeg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
