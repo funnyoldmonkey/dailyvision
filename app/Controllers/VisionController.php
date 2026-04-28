@@ -70,12 +70,26 @@ class VisionController
             return;
         }
 
+        // Get image dimensions for better OG preview
+        $imagePath = __DIR__ . '/../../public/' . $vision['image_path'];
+        $width = 1080;
+        $height = 1350;
+        if (file_exists($imagePath)) {
+            $size = getimagesize($imagePath);
+            if ($size) {
+                $width = $size[0];
+                $height = $size[1];
+            }
+        }
+
         view('vision_view', [
             'vision' => $vision,
             'title' => '"' . $vision['verse_text'] . '" | Daily Vision',
             'og_title' => $vision['verse_reference'] . ': ' . $vision['verse_text'],
             'og_description' => $vision['devotional_summary'],
             'og_image' => base_url($vision['image_path']),
+            'og_image_width' => $width,
+            'og_image_height' => $height,
             'og_url' => base_url('v/' . $id)
         ]);
     }

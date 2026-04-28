@@ -355,8 +355,6 @@ const App = {
 
             // 3. Share
             const shareData = {
-                title: 'Daily Vision | A Spiritual Reflection',
-                text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\nRead more:`,
                 url: shareUrl
             };
 
