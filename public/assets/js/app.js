@@ -305,16 +305,37 @@ const App = {
             return;
         }
 
+        const btnShare = this.elements.btnShare;
+        const originalHtml = btnShare.innerHTML;
+        btnShare.disabled = true;
+        btnShare.innerHTML = `<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
         try {
             const { aiResult } = this.state;
             const dataUrl = this.elements.canvas.toDataURL('image/jpeg', 0.9);
+            
+            // 1. Save to server first
+            const saveResponse = await fetch(`${APP_URL}/api/visions`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    image: dataUrl,
+                    ...aiResult
+                })
+            });
+
+            const saved = await saveResponse.json();
+            if (saved.error) throw new Error(saved.error);
+
+            // 2. Prepare file for sharing
             const res = await fetch(dataUrl);
             const blob = await res.blob();
             const file = new File([blob], 'daily-vision.jpg', { type: 'image/jpeg' });
 
             const shareData = {
                 title: 'Daily Vision | A Spiritual Reflection',
-                text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\n${aiResult.fullDevotion}\n\nShared via Daily Vision App`
+                text: `✨ Daily Vision Reflection\n\n"${aiResult.verseText}"\n— ${aiResult.verseReference}\n\nShared via Daily Vision App`,
+                url: saved.url
             };
 
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -324,6 +345,10 @@ const App = {
             await navigator.share(shareData);
         } catch (err) {
             console.error("Share error:", err);
+            alert("Could not share the vision. Please try again.");
+        } finally {
+            btnShare.disabled = false;
+            btnShare.innerHTML = originalHtml;
         }
     }
 };

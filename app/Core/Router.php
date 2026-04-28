@@ -40,11 +40,15 @@ class Router
 
         foreach ($this->routes as $route) {
             $pattern = "#^" . $route['route'] . "$#";
-            if (preg_match($pattern, $uri) && $route['method'] === $method) {
+            if (preg_match($pattern, $uri, $matches) && $route['method'] === $method) {
+                array_shift($matches); // Remove full match
+                
                 [$controller, $action] = explode('@', $route['action']);
                 $controller = "App\\Controllers\\" . $controller;
                 $instance = new $controller();
-                $instance->$action();
+                
+                // Call action with captured parameters
+                call_user_func_array([$instance, $action], $matches);
                 return;
             }
         }

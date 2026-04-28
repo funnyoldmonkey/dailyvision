@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Daily Vision | Spiritual Lens</title>
+    <title><?php echo $title ?? 'Daily Vision | Spiritual Lens'; ?></title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/icons/icon-192.png'); ?>">
@@ -18,17 +18,17 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo base_url(); ?>">
-    <meta property="og:title" content="Daily Vision | Spiritual Lens">
-    <meta property="og:description" content="Take a photo, receive a reflection. A spiritual lens for your daily journey.">
-    <meta property="og:image" content="<?php echo base_url('assets/icons/icon-512.png'); ?>">
+    <meta property="og:url" content="<?php echo $og_url ?? base_url(); ?>">
+    <meta property="og:title" content="<?php echo $og_title ?? 'Daily Vision | Spiritual Lens'; ?>">
+    <meta property="og:description" content="<?php echo $og_description ?? 'Take a photo, receive a reflection. A spiritual lens for your daily journey.'; ?>">
+    <meta property="og:image" content="<?php echo $og_image ?? base_url('assets/icons/icon-512.png'); ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="<?php echo base_url(); ?>">
-    <meta property="twitter:title" content="Daily Vision | Spiritual Lens">
-    <meta property="twitter:description" content="Take a photo, receive a reflection. A spiritual lens for your daily journey.">
-    <meta property="twitter:image" content="<?php echo base_url('assets/icons/icon-512.png'); ?>">
+    <meta property="twitter:url" content="<?php echo $og_url ?? base_url(); ?>">
+    <meta property="twitter:title" content="<?php echo $og_title ?? 'Daily Vision | Spiritual Lens'; ?>">
+    <meta property="twitter:description" content="<?php echo $og_description ?? 'Take a photo, receive a reflection. A spiritual lens for your daily journey.'; ?>">
+    <meta property="twitter:image" content="<?php echo $og_image ?? base_url('assets/icons/icon-512.png'); ?>">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

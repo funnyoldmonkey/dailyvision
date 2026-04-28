@@ -61,3 +61,33 @@ if (!function_exists('json')) {
         exit;
     }
 }
+
+if (!function_exists('time_ago')) {
+    function time_ago(string $datetime): string
+    {
+        $time = strtotime($datetime);
+        $diff = time() - $time;
+        
+        if ($diff < 1) return 'just now';
+        
+        $intervals = [
+            31536000 => 'year',
+            2592000  => 'month',
+            604800   => 'week',
+            86400    => 'day',
+            3600     => 'hour',
+            60       => 'minute',
+            1        => 'second'
+        ];
+        
+        foreach ($intervals as $secs => $label) {
+            $d = $diff / $secs;
+            if ($d >= 1) {
+                $r = round($d);
+                return $r . ' ' . $label . ($r > 1 ? 's' : '') . ' ago';
+            }
+        }
+        
+        return 'just now';
+    }
+}
