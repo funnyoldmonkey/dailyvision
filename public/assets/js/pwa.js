@@ -16,6 +16,7 @@ if ('serviceWorker' in navigator) {
                         }
                     };
                 };
+                console.log('Daily Vision PWA Ready');
             })
             .catch((error) => {
                 console.log('Daily Vision SW failed:', error);
