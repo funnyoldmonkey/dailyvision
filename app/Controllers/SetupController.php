@@ -21,8 +21,8 @@ class SetupController
 
         // Seed settings
         $settings = [
-            'gemini_api_key' => 'AIzaSyAVcqvYv8px_ID0aSX8W51UNSQ_2_AVxrw',
-            'ai_model_name' => 'gemma-4-26b-a4b-it'
+            'gemini_api_key' => 'YOUR_API_KEY_HERE',
+            'ai_model_name' => 'YOUR_AI_MODEL_HERE'
         ];
 
         foreach ($settings as $key => $value) {
