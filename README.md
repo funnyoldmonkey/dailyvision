@@ -1,4 +1,4 @@
-# 🌟 Daily Vision | Camera-First Spiritual Lens
+# 🌟 Daily Vision | Spiritual Lens
 
 > "Take a photo, receive a reflection. A spiritual lens for your daily journey."
 
