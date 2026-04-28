@@ -211,11 +211,9 @@ const App = {
             gap -= 2;
         }
 
-        const summaryLineHeight = 45;
-        const verseLineHeight = 85;
-        const gap = 20; // Reduced gap
-        
-        const totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 40;
+        // Adjust spacing for the final layout
+        gap = 20; 
+        totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 40;
 
         let startY = aiResult.textPosition === 'top' ? padding + 40 : 
                      aiResult.textPosition === 'bottom' ? canvas.height - totalHeight - padding :
