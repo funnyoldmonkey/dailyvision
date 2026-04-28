@@ -40,21 +40,26 @@ class AiController
         
         STRICT RULING: Skip all internal thinking, reasoning, or monologue. Go straight to the answer.
         
-        STRICT REQUIREMENT: Output ONLY a valid JSON object. Do not include any preamble, markdown formatting, or postscript.
+        CREATIVE VARIETY RULES:
+        1. Pick one vibeColor from this pool: [#E5D3B3, #D4E2D4, #D1C4E9, #FFECB3, #B3E5FC, #F8BBD0, #C8E6C9, #B0BEC5, #FFE0B2, #CFD8DC, #FFF9C4, #DCEDC8, #F5F5F5, #E1F5FE, #FFF3E0, #F3E5F5, #E8F5E9, #EFEBE9, #FAFAFA, #ECEFF1]
+        2. Pick one uniqueFont from this pool: [Playfair Display, Montserrat, Cormorant Garamond, Outfit, Cinzel, Lobster, Dancing Script, Quicksand, Raleway, Great Vibes, Bodoni Moda, Syne, Libre Baskerville, EB Garamond, Abril Fatface, Satisfy, Oswald, Spectral, Inter, Caveat]
+        3. textPosition: Choose based on the subject. If the subject is in the middle, use 'top' or 'bottom'. Avoid covering faces.
+        
+        STRICT REQUIREMENT: Output ONLY a valid JSON object. Do not include preamble, markdown formatting, or postscript.
         
         JSON Schema:
         {
           \"verseText\": \"[Short, powerful Bible Verse]\",
           \"verseReference\": \"[Book, Chapter, Verse]\",
-          \"devotionalSummary\": \"[A concise, 15-word summary of the devotion for image overlay]\",
-          \"fullDevotion\": \"[A full 3-4 sentence devotion and implication text]\",
-          \"vibeColor\": \"[A HEX color complimenting the photo]\",
-          \"uniqueFont\": \"[A Google Font family name for the overlay]\",
+          \"devotionalSummary\": \"[A concise, 10-word summary for image overlay]\",
+          \"fullDevotion\": \"[A full 3-4 sentence devotion]\",
+          \"vibeColor\": \"[From Pool]\",
+          \"uniqueFont\": \"[From Pool]\",
           \"textPosition\": \"[top|center|bottom]\"
         }";
 
         if ($isReimagine) {
-            $prompt .= "\nSTRICT INSTRUCTION: This is a 'Reimagine' request. Return a COMPLETELY DIFFERENT verse, devotion, vibe color, font, and text position than a standard interpretation.";
+            $prompt .= "\nSTRICT INSTRUCTION: This is a 'Reimagine' request. You MUST return a COMPLETELY DIFFERENT verse, devotion, vibeColor, font, and textPosition than your previous standard interpretation. Be as creative, abstract, and unexpected as possible while maintaining spiritual integrity.";
         }
 
         $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}";
