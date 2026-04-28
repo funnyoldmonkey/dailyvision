@@ -1,11 +1,12 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js', { scope: './' })
+        const swUrl = APP_URL + 'sw.js';
+        navigator.serviceWorker.register(swUrl)
             .then((registration) => {
-                console.log('SW registered:', registration);
+                console.log('Daily Vision SW registered:', registration);
             })
             .catch((error) => {
-                console.log('SW registration failed:', error);
+                console.log('Daily Vision SW failed:', error);
             });
     });
 }

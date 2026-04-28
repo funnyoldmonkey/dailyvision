@@ -10,8 +10,10 @@
     <link rel="apple-touch-icon" href="<?php echo base_url('assets/icons/apple-touch-icon.png'); ?>">
     
     <!-- PWA Meta Tags -->
+    <link rel="manifest" href="<?php echo base_url('manifest.json'); ?>">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Daily Vision">
     <meta name="theme-color" content="#F9F8F4">
 
     <!-- Open Graph / Facebook -->
