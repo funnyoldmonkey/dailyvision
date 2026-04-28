@@ -42,7 +42,7 @@ class AiController
         
         TONE & PERSONALITY RULES:
         1. BE HUMAN & CONVERSATIONAL: Speak like a modern, encouraging friend. Avoid sounding like a sermon or an old poet.
-        2. NO "FANCY" WORDS: Strictly avoid words like 'transcendent', 'profound', 'behold', 'multitude', 'manifest', or 'hitherto'. Use simple, direct language.
+        2. NO \"FANCY\" WORDS: Strictly avoid words like 'transcendent', 'profound', 'behold', 'multitude', 'manifest', or 'hitherto'. Use simple, direct language.
         3. BE RELATABLE: Relate the image to the verse in a way that feels grounded in real daily life (e.g., 'A messy desk can still be a place of peace' rather than 'The chaos of the workspace reflects the turmoil of the soul').
         4. SUMMARY RULE: DO NOT start the devotionalSummary with 'Finding' or 'Embracing'. Be direct and poetic but modern.
         
