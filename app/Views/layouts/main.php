@@ -120,8 +120,8 @@
     <script>
         const APP_URL = "<?php echo base_url(); ?>";
     </script>
-    <script src="<?php echo base_url('assets/js/pwa.js?v=1.2'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/app.js?v=1.2'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/pwa.js?v=1.3'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/app.js?v=1.3'); ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof App !== 'undefined') {

@@ -23,7 +23,9 @@ const App = {
         stream: null,
         capturedImage: null,
         aiResult: null,
-        isReimagining: false
+        isReimagining: false,
+        isProcessing: false,
+        isSharing: false
     },
 
     async init() {
@@ -67,7 +69,8 @@ const App = {
     },
 
     async capturePhoto() {
-        if (this.elements.btnCapture.disabled) return;
+        if (this.state.isProcessing) return;
+        this.state.isProcessing = true;
         this.elements.btnCapture.disabled = true;
         this.elements.btnCapture.style.opacity = '0.5';
 
@@ -79,10 +82,14 @@ const App = {
         
         this.state.capturedImage = canvas.toDataURL('image/jpeg', 0.8);
         this.showView('viewLoading');
-        await this.processImage();
         
-        this.elements.btnCapture.disabled = false;
-        this.elements.btnCapture.style.opacity = '1';
+        try {
+            await this.processImage();
+        } finally {
+            this.state.isProcessing = false;
+            this.elements.btnCapture.disabled = false;
+            this.elements.btnCapture.style.opacity = '1';
+        }
     },
 
     async processImage(isReimagine = false) {
@@ -286,10 +293,18 @@ const App = {
     },
 
     async reimagine() {
+        if (this.state.isProcessing) return;
+        this.state.isProcessing = true;
+
         this.showView('viewLoading');
         const h2 = this.elements.viewLoading.querySelector('h2');
-        h2.innerText = "Daily Vision is reimagining...";
-        await this.processImage(true);
+        if (h2) h2.innerText = "Daily Vision is reimagining...";
+        
+        try {
+            await this.processImage(true);
+        } finally {
+            this.state.isProcessing = false;
+        }
     },
 
     saveImage() {
@@ -363,5 +378,3 @@ const App = {
         }
     }
 };
-
-App.init();
