@@ -182,32 +182,38 @@ const App = {
         const centerX = canvas.width / 2;
         
         // Calculate total block height first to center it better
+        const summaryFont = `italic 36px "${aiResult.uniqueFont || 'Georgia'}"`;
+        const verseFont = `bold 72px "${aiResult.uniqueFont || 'Georgia'}"`;
+        
+        ctx.font = summaryFont;
         const summaryLines = this.getWrapTextLines(ctx, aiResult.devotionalSummary, canvas.width - padding * 2);
+        
+        ctx.font = verseFont;
         const verseLines = this.getWrapTextLines(ctx, `"${aiResult.verseText}"`, canvas.width - padding * 2);
         
         const summaryLineHeight = 45;
         const verseLineHeight = 85;
-        const gap = 40;
+        const gap = 60; // Increased gap
         
-        const totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 60;
+        const totalHeight = (summaryLines.length * summaryLineHeight) + gap + (verseLines.length * verseLineHeight) + 80;
 
         let startY = aiResult.textPosition === 'top' ? padding + 100 : 
                      aiResult.textPosition === 'bottom' ? canvas.height - totalHeight - padding :
                      (canvas.height - totalHeight) / 2;
 
         // Devotional Summary (Italic, smaller)
-        ctx.font = `italic 36px "${aiResult.uniqueFont || 'Georgia'}"`;
+        ctx.font = summaryFont;
         this.wrapText(ctx, aiResult.devotionalSummary, centerX, startY, canvas.width - padding * 2, summaryLineHeight);
         
         // Move Y down based on summary lines
         startY += (summaryLines.length * summaryLineHeight) + gap;
         
         // Verse Text (Bold, larger)
-        ctx.font = `bold 72px "${aiResult.uniqueFont || 'Georgia'}"`;
+        ctx.font = verseFont;
         this.wrapText(ctx, `"${aiResult.verseText}"`, centerX, startY, canvas.width - padding * 2, verseLineHeight);
 
         // Reference
-        startY += (verseLines.length * verseLineHeight) + 30;
+        startY += (verseLines.length * verseLineHeight) + 40;
         ctx.font = `40px "${aiResult.uniqueFont || 'Georgia'}"`;
         ctx.fillText(`— ${aiResult.verseReference}`, centerX, startY);
     },
